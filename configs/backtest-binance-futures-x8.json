@@ -1,0 +1,162 @@
+{
+  "dry_run": true,
+  "dry_run_wallet": 16500,
+  "grinding_enable": true,
+  "max_open_trades": 6,
+  "stake_currency": "USDT",
+  "stake_amount": "unlimited",
+  "tradable_balance_ratio": 0.99,
+  "fiat_display_currency": "",
+  "force_entry_enable": true,
+  "initial_state": "running",
+  "timeframe": "5m",
+  "unfilledtimeout": {
+    "entry": 3,
+    "exit": 2,
+    "exit_timeout_count": 0,
+    "unit": "minutes"
+  },
+  "order_types": {
+    "entry": "limit",
+    "exit": "limit",
+    "emergency_exit": "limit",
+    "force_entry": "limit",
+    "force_exit": "limit",
+    "stoploss": "limit",
+    "stoploss_on_exchange": false,
+    "stoploss_on_exchange_interval": 60,
+    "stoploss_on_exchange_limit_ratio": 0.99
+  },
+  "entry_pricing": {
+    "price_side": "other",
+    "use_order_book": true,
+    "order_book_top": 1,
+    "price_last_balance": 0,
+    "check_depth_of_market": {
+      "enabled": false,
+      "bids_to_ask_delta": 1
+    }
+  },
+  "exit_pricing": {
+    "price_side": "other",
+    "use_order_book": true,
+    "order_book_top": 1,
+    "price_last_balance": 0
+  },
+  "exchange": {
+    "name": "binance",
+    "key": "",
+    "password": "",
+    "secret": "",
+    "ccxt_config": {
+      "urls": {
+        "api": {
+          "public": "https://data-api.binance.vision/api/v3",
+          "fapiPublic": "https://www.binance.com/fapi/v1",
+          "fapiPublicV2": "https://www.binance.com/fapi/v2",
+          "fapiPublicV3": "https://www.binance.com/fapi/v3"
+        }
+      },
+      "options": {
+        "fetchMarkets": [
+          "linear"
+        ]
+      }
+    },
+    "ccxt_async_config": {
+      "urls": {
+        "api": {
+          "public": "https://data-api.binance.vision/api/v3",
+          "fapiPublic": "https://www.binance.com/fapi/v1",
+          "fapiPublicV2": "https://www.binance.com/fapi/v2",
+          "fapiPublicV3": "https://www.binance.com/fapi/v3"
+        }
+      },
+      "aiohttp_trust_env": true,
+      "cafile": "/root/.ccr/ca-bundle.crt",
+      "options": {
+        "fetchMarkets": [
+          "linear"
+        ]
+      }
+    },
+    "pair_whitelist": [
+      "AAVE/USDT:USDT",
+      "ADA/USDT:USDT",
+      "ALGO/USDT:USDT",
+      "APT/USDT:USDT",
+      "ARB/USDT:USDT",
+      "ATOM/USDT:USDT",
+      "AVAX/USDT:USDT",
+      "BCH/USDT:USDT",
+      "BTC/USDT:USDT",
+      "CHR/USDT:USDT",
+      "CKB/USDT:USDT",
+      "COMP/USDT:USDT",
+      "CRV/USDT:USDT",
+      "DASH/USDT:USDT",
+      "DOGE/USDT:USDT",
+      "DOT/USDT:USDT",
+      "ENA/USDT:USDT",
+      "ETC/USDT:USDT",
+      "ETH/USDT:USDT",
+      "FET/USDT:USDT",
+      "FIL/USDT:USDT",
+      "GALA/USDT:USDT",
+      "GRT/USDT:USDT",
+      "HBAR/USDT:USDT",
+      "ICP/USDT:USDT",
+      "IMX/USDT:USDT",
+      "INJ/USDT:USDT",
+      "JUP/USDT:USDT",
+      "KSM/USDT:USDT",
+      "LDO/USDT:USDT",
+      "LINK/USDT:USDT",
+      "LTC/USDT:USDT",
+      "NEAR/USDT:USDT",
+      "NEO/USDT:USDT",
+      "ONDO/USDT:USDT",
+      "ONE/USDT:USDT",
+      "ONT/USDT:USDT",
+      "OP/USDT:USDT",
+      "PENGU/USDT:USDT",
+      "POL/USDT:USDT",
+      "QNT/USDT:USDT",
+      "RENDER/USDT:USDT",
+      "ROSE/USDT:USDT",
+      "SEI/USDT:USDT",
+      "SNX/USDT:USDT",
+      "SOL/USDT:USDT",
+      "STX/USDT:USDT",
+      "SUI/USDT:USDT",
+      "SUSHI/USDT:USDT",
+      "TAO/USDT:USDT",
+      "TIA/USDT:USDT",
+      "TRX/USDT:USDT",
+      "UMA/USDT:USDT",
+      "UNI/USDT:USDT",
+      "VET/USDT:USDT",
+      "VIRTUAL/USDT:USDT",
+      "WIF/USDT:USDT",
+      "WLD/USDT:USDT",
+      "XLM/USDT:USDT",
+      "XRP/USDT:USDT",
+      "XTZ/USDT:USDT",
+      "ZEC/USDT:USDT"
+    ],
+    "pair_blacklist": []
+  },
+  "internals": {
+    "process_throttle_secs": 5
+  },
+  "trading_mode": "futures",
+  "margin_mode": "isolated",
+  "dataformat_ohlcv": "feather",
+  "strategy": "NostalgiaForInfinityX8",
+  "strategy_path": "user_data/strategies",
+  "pairlists": [
+    {
+      "method": "StaticPairList"
+    }
+  ]
+}
