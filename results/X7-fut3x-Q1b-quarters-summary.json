@@ -1,0 +1,23 @@
+[
+  {
+    "q": 1,
+    "timerange": "20251012-20251201",
+    "starting_balance": 18685.7,
+    "final_balance": 36927.37075647,
+    "profit_total": 0.9762369489219028,
+    "profit_total_abs": 18241.67075647,
+    "total_trades": 63,
+    "wins": 62,
+    "losses": 1,
+    "draws": 0,
+    "max_drawdown_account": 0.0019221063896573457,
+    "max_drawdown_abs": 71.11502593000114,
+    "profit_factor": 257.50937362275107,
+    "sharpe": 27.000944391028238,
+    "sortino": -100.0,
+    "calmar": 19406.814130070477,
+    "market_change": -0.18649301750857292,
+    "trade_count_long": 59,
+    "trade_count_short": 4
+  }
+]
