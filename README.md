@@ -22,4 +22,5 @@ Pflichtwerte aus dem Original: `timeframe` 5m, `use_exit_signal` true,
 
 - `configs/backtest-binance-spot.json`, `configs/backtest-binance-futures.json` – Backtest-Configs (16.500 USDT, 6 Slots, Hebel 3 isolated bei Futures). Binance-API ist aus der Cloud geo-gesperrt, daher `urls`-Override auf erreichbare Spiegel (nur Marktdefinitionen).
 - `tools/run_backtest_quarters.py` – Jahres-Backtest in 91-Tage-Blöcken mit durchgereichtem Kapital (RAM-Limit der Cloud-Umgebung, ~230 MB/Pair-Jahr).
+- `user_data/strategies/NostalgiaForInfinityX7_MaxHold.py` – Subklasse mit harter Max-Haltedauer (`max_hold_hours`, Standard 72); Config `configs/backtest-binance-futures-maxhold72.json`.
 - `results/` – Kennzahlen der Läufe (Daten: iterativv/NostalgiaForInfinityData, Binance USDT-M Futures, 62 Pairs, 2025-09-01..2026-09-01).

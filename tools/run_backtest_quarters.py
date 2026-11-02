@@ -49,7 +49,7 @@ for i, (a, b) in enumerate(bounds, 1):
     with zipfile.ZipFile(out_dir / last) as z:
         meta = next(n for n in z.namelist() if n.endswith(".json") and "_config" not in n and "_strategy" not in n)
         data = json.loads(z.read(meta))
-    s = data["strategy"]["NostalgiaForInfinityX7"]
+    s = data["strategy"][cfg["strategy"]]
     wallet = s["final_balance"]
     results.append({"q": i, "timerange": tr, **{k: s[k] for k in (
         "starting_balance", "final_balance", "profit_total", "profit_total_abs", "total_trades",
