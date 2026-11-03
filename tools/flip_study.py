@@ -9,15 +9,16 @@ import numpy as np, pandas as pd
 
 DATA = "/home/claude/data/nfidata/binance/futures"
 RES = "/home/claude/cryptox7_50/user_data/backtest_results"
-FILES = ['backtest-result-2026-11-02_17-02-39.zip','backtest-result-2026-11-02_17-03-59.zip',
-         'backtest-result-2026-11-02_17-06-27.zip','backtest-result-2026-11-02_17-08-32.zip']
+STRAT = sys.argv[1] if len(sys.argv) > 1 else 'NostalgiaForInfinityX7'
+FILES = {'NostalgiaForInfinityX7': ['backtest-result-2026-11-02_17-02-39.zip','backtest-result-2026-11-02_17-03-59.zip','backtest-result-2026-11-02_17-06-27.zip','backtest-result-2026-11-02_17-08-32.zip'],
+         'NostalgiaForInfinityX8': ['backtest-result-2026-11-02_17-42-07.zip','backtest-result-2026-11-02_17-43-35.zip','backtest-result-2026-11-02_17-45-03.zip','backtest-result-2026-11-02_17-46-24.zip']}[STRAT]
 L, FEE = 3.0, 0.0004
 
 rows = []
 for f in FILES:
     z = zipfile.ZipFile(os.path.join(RES, f))
     meta = [n for n in z.namelist() if n.endswith('.json') and 'config' not in n and 'strategy' not in n][0]
-    rows.append(pd.DataFrame(json.loads(z.read(meta))['strategy']['NostalgiaForInfinityX7']['trades']))
+    rows.append(pd.DataFrame(json.loads(z.read(meta))['strategy'][STRAT]['trades']))
 t = pd.concat(rows); t = t[~t.is_short].copy()
 t['first_rate'] = t.orders.apply(lambda o: o[0]['safe_price'])
 t['open_date'] = pd.to_datetime(t.open_date, utc=True); t['close_date'] = pd.to_datetime(t.close_date, utc=True)
@@ -58,7 +59,7 @@ for x in (0.02, 0.03, 0.05, 0.08):
         out.append(dict(x=x*100, y=y*100, ausgeloest=n, base_sum=base.sum()*100, flip_sum=flip.sum()*100,
                         delta=(flip-base).sum()*100, besser=int((((flip-base)[np.array([h for *_, h,_,_ in r])==1])>0).sum())))
 df = pd.DataFrame(out)
-print("Summe Margin-Rendite über 190 Longs in %-Punkten (Hebel 3, Gebühr 0,04 %/Seite)")
+print(f"Summe Margin-Rendite über {len(t)} Longs in %-Punkten (Hebel 3, Gebühr 0,04 %/Seite)")
 print(df.round(1).to_string(index=False))
 # Detail bester/typischer Fall
 x, y = 0.05, 0.02

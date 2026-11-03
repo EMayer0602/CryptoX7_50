@@ -3,20 +3,21 @@ Short schließen sobald Kurs y% über sein Tief steigt. Variante "re": nach Schl
 erneut hedgen, wenn der Kurs wieder unter -x% fällt. Preisbasiert, Hebel L, Gebühr fee/Seite.
 Basis = Long first_rate -> close_rate (ohne Rebuys). Delta = Hedge-P&L (Short-Beiträge).
 """
-import json, os, zipfile
+import json, os, sys, zipfile
 import numpy as np, pandas as pd
 
 DATA = "/home/claude/data/nfidata/binance/futures"
 RES = "/home/claude/cryptox7_50/user_data/backtest_results"
-FILES = ['backtest-result-2026-11-02_17-02-39.zip','backtest-result-2026-11-02_17-03-59.zip',
-         'backtest-result-2026-11-02_17-06-27.zip','backtest-result-2026-11-02_17-08-32.zip']
+STRAT = sys.argv[1] if len(sys.argv) > 1 else 'NostalgiaForInfinityX7'
+FILES = {'NostalgiaForInfinityX7': ['backtest-result-2026-11-02_17-02-39.zip','backtest-result-2026-11-02_17-03-59.zip','backtest-result-2026-11-02_17-06-27.zip','backtest-result-2026-11-02_17-08-32.zip'],
+         'NostalgiaForInfinityX8': ['backtest-result-2026-11-02_17-42-07.zip','backtest-result-2026-11-02_17-43-35.zip','backtest-result-2026-11-02_17-45-03.zip','backtest-result-2026-11-02_17-46-24.zip']}[STRAT]
 L, FEE = 3.0, 0.0004
 
 rows = []
 for f in FILES:
     z = zipfile.ZipFile(os.path.join(RES, f))
     meta = [n for n in z.namelist() if n.endswith('.json') and 'config' not in n and 'strategy' not in n][0]
-    rows.append(pd.DataFrame(json.loads(z.read(meta))['strategy']['NostalgiaForInfinityX7']['trades']))
+    rows.append(pd.DataFrame(json.loads(z.read(meta))['strategy'][STRAT]['trades']))
 t = pd.concat(rows); t = t[~t.is_short].copy()
 t['first_rate'] = t.orders.apply(lambda o: o[0]['safe_price'])
 t['open_date'] = pd.to_datetime(t.open_date, utc=True); t['close_date'] = pd.to_datetime(t.close_date, utc=True)
